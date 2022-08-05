@@ -56,7 +56,7 @@ export const items=[
     featured:true,
     instock:true,
     rating:4.5,
-    image:'./images/img4.jpg',
+    image:'./images/img11.jpg',
     description:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo sequi ab quaerat molestias similique fugiat obcaecati maiores exercitationem saepe! Ex tempore consequuntur dignissimos modi maxime sunt sed magnam alias assumenda!'
 },
 {

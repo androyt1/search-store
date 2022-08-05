@@ -3,12 +3,18 @@ import { IProduct } from '../interfaces/product'
 import { items } from '../data/items'
 import Product from '../components/Product'
 import ReactPaginate from 'react-paginate'
+import ProductDetails from '../components/modals/ProductDetails'
 
 interface Iitems{
   products:IProduct[] 
+  showProductModal:boolean
+  toggleProductModal():void
+  close():void
+  setProduct(product:IProduct):void
+  product:IProduct 
 }
 
-const Home:FC<Iitems>= ({products}) => { 
+const Home:FC<Iitems>= ({products,showProductModal,toggleProductModal,close,setProduct,product}) => { 
 
    const [currentItems, setCurrentItems] = useState<IProduct[]>([]);
   const [pageCount, setPageCount] = useState(0);
@@ -33,14 +39,15 @@ const Home:FC<Iitems>= ({products}) => {
 
 
   return (
-    <div className='min-h-[100vh] w-full flex flex-col justify-start items-center  px-3 md:px-10'>
-      <div className='w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-10 place-items-end   gap-y-10'>
+    <div className='min-h-[100vh] w-full flex flex-col justify-start items-center  px-3 md:px-10 relative'>
+      <ProductDetails showProductModal={showProductModal} close={close} product={product} />
+      <div className='w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-10 place-items-end   gap-y-10 '>
         {currentItems?.map(product=>(
-        <Product key={product.id} {...product} />
+        <Product key={product.id} product={product}  toggleProductModal={toggleProductModal} setProduct={setProduct} />
         ))}
       </div>
 
-
+  
       <div className='mt-8'>
       <ReactPaginate
           breakLabel="..."
